@@ -5,21 +5,25 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class MainPresenter( private val allUserView: MainView.AllUserView, private val userRepository: UserRepository) : MainView.Presenter {
+class MainPresenter @Inject constructor(
+    private val allUserView: MainView.AllUserView,
+    private val userRepository: UserRepository
+) : MainView.Presenter {
 
 
     override fun loadDataUser() {
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val data  = userRepository.getUsers()
+                val data = userRepository.getUsers()
 
                 withContext(Dispatchers.Main) {
                     allUserView.showListUser(data)
                 }
             } catch (e: java.lang.Exception) {
-              e.printStackTrace()
+                e.printStackTrace()
             }
         }
     }
@@ -27,7 +31,6 @@ class MainPresenter( private val allUserView: MainView.AllUserView, private val 
     override fun goToInsertForm() {
         allUserView.goToInsertPage()
     }
-
 
 
 }

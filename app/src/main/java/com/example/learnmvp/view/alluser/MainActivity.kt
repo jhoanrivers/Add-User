@@ -14,7 +14,11 @@ import com.example.learnmvp.data.local.repository.UserRepository
 import com.example.learnmvp.data.local.repository.UserRepositoryImpl
 import com.example.learnmvp.databinding.ActivityMainBinding
 import com.example.learnmvp.view.formuser.FormUserActivity
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainView.AllUserView {
 
 
@@ -22,7 +26,9 @@ class MainActivity : AppCompatActivity(), MainView.AllUserView {
     lateinit var binding: ActivityMainBinding
     lateinit var userAdapter: MainAdapter
 
+    @Inject
     lateinit var userRepository: UserRepository
+
     lateinit var result: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,14 +47,13 @@ class MainActivity : AppCompatActivity(), MainView.AllUserView {
                 println("yes, it return 123")
                 presenter.loadDataUser()
             }
-
         }
-        val userDao = UserDatabase.getDatabase(this).userDao()
-        userRepository = UserRepositoryImpl(userDao)
 
         presenter = MainPresenter(this, userRepository)
         presenter.loadDataUser()
-        userAdapter = MainAdapter()
+        userAdapter = MainAdapter(object: MainAdapter.MainListener{
+
+        })
         presenter.loadDataUser()
     }
 

@@ -2,8 +2,9 @@ package com.example.learnmvp.data.local.repository
 
 import com.example.learnmvp.data.local.dao.UserDao
 import com.example.learnmvp.data.local.entity.UserEntity
+import javax.inject.Inject
 
-class UserRepositoryImpl (private val userDao: UserDao) : UserRepository {
+class UserRepositoryImpl @Inject constructor(private val userDao: UserDao) : UserRepository {
 
     override suspend fun getUsers(): List<UserEntity> {
         return userDao.getAllUsers()

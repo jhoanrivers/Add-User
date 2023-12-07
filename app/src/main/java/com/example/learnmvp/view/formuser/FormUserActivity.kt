@@ -11,12 +11,19 @@ import com.example.learnmvp.data.local.entity.UserEntity
 import com.example.learnmvp.data.local.repository.UserRepository
 import com.example.learnmvp.data.local.repository.UserRepositoryImpl
 import com.example.learnmvp.databinding.ActivityFormUserBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FormUserActivity : AppCompatActivity(), FormUser.UserView {
 
     lateinit var formUserPresenter: FormUserPresenter
 
     lateinit var binding: ActivityFormUserBinding
+
+    @Inject
+    lateinit var userRepository: UserRepository
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +38,7 @@ class FormUserActivity : AppCompatActivity(), FormUser.UserView {
 
     private fun initView() {
 
-        val userDao = UserDatabase.getDatabase(this).userDao()
-        val repository: UserRepository = UserRepositoryImpl(userDao)
-        formUserPresenter = FormUserPresenter(this, repository)
-
-
+        formUserPresenter = FormUserPresenter(this, userRepository)
     }
 
     private fun initFields() {
