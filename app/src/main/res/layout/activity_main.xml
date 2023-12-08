@@ -13,18 +13,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnChangeData"
+        app:layout_constraintBottom_toTopOf="@id/layoutBtn"
         />
 
-    <Button
-        android:id="@+id/btnChangeData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ADD NEW user"
+
+    <LinearLayout
+        android:id="@+id/layoutBtn"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginBottom="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        android:paddingHorizontal="20dp">
+
+        <Button
+            android:id="@+id/btnChangeData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD NEW user"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="16dp"
+            />
+
+        <Button
+            android:id="@+id/randomImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RANDOM IMAGE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="16dp"
+            />
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

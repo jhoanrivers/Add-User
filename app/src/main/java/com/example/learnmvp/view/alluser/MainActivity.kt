@@ -14,6 +14,7 @@ import com.example.learnmvp.data.local.repository.UserRepository
 import com.example.learnmvp.data.local.repository.UserRepositoryImpl
 import com.example.learnmvp.databinding.ActivityMainBinding
 import com.example.learnmvp.view.formuser.FormUserActivity
+import com.example.learnmvp.view.random.RandomImageActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -61,6 +62,9 @@ class MainActivity : AppCompatActivity(), MainView.AllUserView {
     private fun bindPresenter() {
         binding.btnChangeData.setOnClickListener {
             presenter.goToInsertForm()
+        }
+        binding.randomImage.setOnClickListener {
+            startActivity(Intent(this, RandomImageActivity::class.java))
         }
     }
 
